@@ -40,10 +40,10 @@ namespace HTN
 		{
 			// But, if any of the earlier records beat the record in LastMTR, we're still good, as we're on a higher priority branch.
 			// This ensures that [0,0,1] can beat [0,1,0]
-			auto& currentMTR = _ctx->GetCurrentMTR();
-			for (u32 i = 0u, count = currentMTR.size(); i < count; i++)
+			const auto& currentMTR = _ctx->GetCurrentMTR();
+			for (size_t i = 0u, count = currentMTR.size(); i < count; i++)
 			{
-				int diff = currentMTR[i] - lastMTR[i];
+				const int diff = currentMTR[i] - lastMTR[i];
 				if (diff < 0)
 				{
 					return true;
@@ -65,7 +65,7 @@ namespace HTN
 	{
 		m_plan = {};
 
-		for (int taskIndex = _startIndex, count = m_subtasks.size(); taskIndex < count; ++taskIndex)
+		for (size_t taskIndex = _startIndex, count = m_subtasks.size(); taskIndex < count; ++taskIndex)
 		{
 			// If the last plan is still running, we need to check whether the
 			// new decomposition can possibly beat it.
@@ -73,7 +73,7 @@ namespace HTN
 			if (!lastMTR.empty())
 			{
 				auto& currentMTR = _ctx->GetCurrentMTR();
-				auto currentDecompositionIndex = currentMTR.size();
+				const auto currentDecompositionIndex = currentMTR.size();
 				if (currentDecompositionIndex < lastMTR.size())
 				{
 					if (!_BeatsLastMTR(_ctx, taskIndex, currentDecompositionIndex))
@@ -92,7 +92,7 @@ namespace HTN
 
 			auto* task = m_subtasks[taskIndex];
 
-			auto status = OnDecomposeTask(_ctx, task, taskIndex, {}, _result);
+			const auto status = OnDecomposeTask(_ctx, task, taskIndex, {}, _result);
 			switch (status)
 			{
 				case DecompositionStatus::Rejected:

@@ -159,7 +159,7 @@ namespace HTN
 		bool isMTRsEqual = currentMTR.size() == lastMTR.size();
 		if (isMTRsEqual)
 		{
-			for (int index = 0, count = currentMTR.size(); index < count; ++index)
+			for (size_t index = 0, count = currentMTR.size(); index < count; ++index)
 			{
 				if (currentMTR[index] < lastMTR[index])
 				{
@@ -184,7 +184,7 @@ namespace HTN
 			// Apply permanent world state changes to the actual world state used during plan execution.
 			auto& worldStateChangeStack = _ctx->GetWorldStateChangeStack();
 			auto& worldState = _ctx->GetWorldState();
-			for (int index = 0, count = worldStateChangeStack.size(); index < count; ++index)
+			for (size_t index = 0, count = worldStateChangeStack.size(); index < count; ++index)
 			{
 				auto& stack = worldStateChangeStack[index];
 				if (!stack.empty())
@@ -199,7 +199,7 @@ namespace HTN
 			// Clear away any changes that might have been applied to the stack
 			// No changes should be made or tracked further when the plan failed.
 			auto& worldStateChangeStack = _ctx->GetWorldStateChangeStack();
-			for (int index = 0, count = worldStateChangeStack.size(); index < count; ++index)
+			for (size_t index = 0, count = worldStateChangeStack.size(); index < count; ++index)
 			{
 				worldStateChangeStack[index] = {};
 			}

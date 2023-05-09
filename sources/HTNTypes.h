@@ -74,12 +74,12 @@ namespace HTN
 
 		int _TryFindNextFreeItemIndex() const
 		{
-			for (int i = 0, count = m_pool.size(); i < count; ++i)
+			for (size_t i = 0, count = m_pool.size(); i < count; ++i)
 			{
 				const auto& poolItem = m_pool[i];
 				if (poolItem.isFree)
 				{
-					return i;
+					return static_cast<int>(i);
 				}
 			}
 			return -1;

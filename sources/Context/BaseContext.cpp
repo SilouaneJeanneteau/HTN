@@ -33,7 +33,7 @@ namespace HTN
 		assert(m_contextState != ContextState::Executing); // HTN BaseContext: Can not trim a context when in execution mode
 		assert(m_worldStateChangeStack.size() == _stackDepth.size()); // HTN BaseContext: WorldStateChangeStack size should be the same as stackDepth
 
-		for (u32 index = 0u, count = _stackDepth.size(); index < count; ++index)
+		for (size_t index = 0u, count = _stackDepth.size(); index < count; ++index)
 		{
 			auto& stack = m_worldStateChangeStack[index];
 			while (stack.size() > _stackDepth[index])
@@ -102,7 +102,7 @@ namespace HTN
 		u32 index = 0u;
 		for (const auto& stack : m_worldStateChangeStack)
 		{
-			worldStateChangeDepth[index++] = stack.size();
+			worldStateChangeDepth[index++] = static_cast<int>(stack.size());
 		}
 		return worldStateChangeDepth;
 	}
